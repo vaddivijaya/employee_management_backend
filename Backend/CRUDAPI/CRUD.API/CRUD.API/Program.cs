@@ -11,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CRUDDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+Console.WriteLine("Hello");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
