@@ -1,0 +1,89 @@
+<div class="container my-5">
+    <h1 class="mb-3">Employees</h1>
+    <table class="table" *ngIf="employees && employees.length>0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Phone</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let m of employees">
+                <td>{{m.id}}</td>
+                <td>{{m.name}}</td>
+                <td>{{m.email}}</td>
+                <td>{{m.salary}}</td>
+                <td>{{m.phone}}</td>
+                <td>{{m.department}}</td>
+                <td>
+                    <button type="button" class="btn btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" (click)="func(m.id)"><i class="fas fa-edit"></i></button>
+               
+                    <button class="btn btn-sm" (click)="deleteEmployee(m)">
+                        <i class="fa-solid fa-trash"></i> <!-- Delete Icon -->
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!employees ||employees.length<=0">No Employees Found</p>
+
+  
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Edit Employee</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #form="ngForm"  (ngSubmit)="updateEmployee()">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Id</label>
+              <input type="text" class="form-control" id="Id" readonly name="id" [(ngModel)]="employeedetails.id">
+              
+            </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="employeedetails.name">
+                
+              </div>
+              <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" [(ngModel)]="employeedetails.email">
+                  
+                </div>
+            
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone number</label>
+                  <input type="number" class="form-control" id="phone" name="phone" [(ngModel)]="employeedetails.phone">
+          
+                </div>
+                <div class="mb-3">
+                  <label for="salary" class="form-label">salary</label>
+                  <input type="number" class="form-control" id="salary" name="salary" [(ngModel)]="employeedetails.salary">
+                  
+                </div>
+            
+                <div class="mb-3">
+                  <label for="department" class="form-label">Department</label>
+                  <input type="text" class="form-control" id="department" name="department" [(ngModel)]="employeedetails.department">
+          
+                </div>
+              
+            
+              <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
